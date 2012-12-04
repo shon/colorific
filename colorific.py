@@ -159,7 +159,7 @@ def extract_colors(filename_or_img, min_saturation=MIN_SATURATION,
     colors, bg_color = detect_background(im, colors, to_canonical)
 
     # keep any color which meets the minimum saturation
-    sat_colors = [c for c in colors if meets_min_saturation(c, min_saturation)]
+    '''sat_colors = [c for c in colors if meets_min_saturation(c, min_saturation)]
     if bg_color and not meets_min_saturation(bg_color, min_saturation):
         bg_color = None
     if sat_colors:
@@ -172,7 +172,8 @@ def extract_colors(filename_or_img, min_saturation=MIN_SATURATION,
     colors = [c for c in colors if c.prominence >= colors[0].prominence
             * min_prominence][:max_colors]
 
-    return Palette(colors, bg_color)
+    return Palette(colors, bg_color)'''
+    return colors, bg_color
 
 def norm_color(c):
     r, g, b = c
@@ -180,8 +181,8 @@ def norm_color(c):
 
 def detect_background(im, colors, to_canonical):
     # more then half the image means background
-    if colors[0].prominence >= BACKGROUND_PROMINENCE:
-        return colors[1:], colors[0]
+    #if colors[0].prominence >= BACKGROUND_PROMINENCE:
+    #    return colors[1:], colors[0]
 
     # work out the background color
     w, h = im.size
